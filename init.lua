@@ -66,8 +66,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 15
-
+vim.opt.scrolloff = 5
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -297,15 +296,6 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
-      vim.keymap.set('n', '<leader>ff', function()
-        local root = string.gsub(vim.fn.system 'git rev-parse --show-toplevel', '\n', '')
-        if vim.v.shell_error == 0 then
-          builtin.live_grep { cwd = root }
-        else
-          builtin.live_grep()
-        end
-      end, { desc = '[F]ind [F]iles in git repository' })
-
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to  to change the theme, layout, etc.
@@ -515,6 +505,11 @@ require('lazy').setup({
             },
           },
         },
+        tsserver = {},
+        eslint_d = {},
+        jsonls = {},
+        prismals = {},
+        yamlls = {},
       }
 
       -- Ensure the servers and tools above are installed
